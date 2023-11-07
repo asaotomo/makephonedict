@@ -1,6 +1,7 @@
 import json
 import requests
 import base64
+import csv
 
 
 def make_dict(total, city, isp):
@@ -14,27 +15,34 @@ def make_dict(total, city, isp):
     suffix = data['suffix']
     prefixInfo = data['prefixInfo']
     no = 0
-    with open("telephone_number_dict.txt", "w+", encoding="UTF-8") as f:
+
+    with open("telephone_number_dict.csv", "w+", encoding="UTF-8", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(["手机号", "手机号归属地"])
         for i in range(len(prefix)):
             for n in range(len(suffix)):
                 phoneNum = prefix[i] + suffix[n]
-                phoneInfo = prefixInfo[i]['province'] + prefixInfo[i]['city'] + prefixInfo[i][
-                    'isp']
+                phoneInfo = prefixInfo[i]['province'] + prefixInfo[i]['city'] + prefixInfo[i]['isp']
                 print(phoneNum, phoneInfo)
-                info = "{} {}\n".format(phoneNum, phoneInfo)
-                f.write(info)
+                writer.writerow([phoneNum, phoneInfo])
                 no += 1
-    print("手机号字典（telephone_number_dict.txt）生成成功，共计生成：{}条，请打开字典查看！".format(no))
+    print("[*]手机号字典（telephone_number_dict.csv）生成成功，共计生成：{}条，请打开字典查看详细内容！".format(no))
 
 
 if __name__ == '__main__':
     try:
-        print("Hx0战队-手机号字典生成器V1.0")
-        total = input("请输入要生成的手机号数量(>=1024):\n")
+        print(""" __  __       _        ____  _                      ____  _      _   
+|  \/  | __ _| | _____|  _ \| |__   ___  _ __   ___|  _ \(_) ___| |_ 
+| |\/| |/ _` | |/ / _ \ |_) | '_ \ / _ \| '_ \ / _ \ | | | |/ __| __|
+| |  | | (_| |   <  __/  __/| | | | (_) | | | |  __/ |_| | | (__| |_ 
+|_|  |_|\__,_|_|\_\___|_|   |_| |_|\___/|_| |_|\___|____/|_|\___|\__|
+Hx0战队-手机号字典生成器V1.1               Update:2023.11.07                                        
+        """)
+        total = input("[+]请输入要生成的手机号数量(>=1024):")
         city = input(
-            "请输入要生成的手机号码城市区域代码(如北京,请输入1101,其他城市代码见城市区域代码查询表,同时生成多城市请用,分割):\n")
+            "[+]请输入要生成的手机号码城市区域代码(如北京，请输入1101,其他城市代码见城市区域代码查询表，同时生成多城市请用，分割):")
         isp = input(
-            "请输入要生成的手机号运营商代码(4001-移动,4006-联通,4008-电信)(同时生成多个运营商请用,分割,全部运营商请输入allin):\n")
+            "[+]请输入要生成的手机号运营商代码(4001-移动，4006-联通，4008-电信)(同时生成多个运营商请用，分割，全部运营商请输入allin):")
         if isp == "allin":
             isp = "4001,4006,4008"
         make_dict(total, city, isp)
