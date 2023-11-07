@@ -1,10 +1,15 @@
-# 手机号字典生成器V1.0
+# 手机号字典生成器V1.1
 
-**工具简介：** 可以根据用户需求定制化生成各大运营商和指定区域的手机号字典。
+**工具简介：** 可以根据用户需求定制化生成各大运营商和指定区域的手机号字典，并导出为CSV文件。
 
 **使用方法：** pyhton3 makepythondict.py
 
-<img width="841" alt="使用案例" src="https://github.com/asaotomo/makepythondict/assets/67818638/701c5813-1402-4958-8292-f215489d2ba1">
+
+<img width="963" alt="image" src="https://github.com/asaotomo/makephonedict/assets/67818638/9295a56a-ba85-43ce-8e59-23377574a358">
+
+脚本会将生成的手机号保存为CSV文件，方便大家使用。
+
+<img width="402" alt="image" src="https://github.com/asaotomo/makephonedict/assets/67818638/4a31bc73-b3aa-49e0-af7b-aa45a5870643">
 
 **使用提示：** 运营商代码和区域代码，可在【手机号字典生成器-运营商代码和城市区域代码查询表.xlsx】中进行查看。
 
