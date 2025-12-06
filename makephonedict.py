@@ -16,6 +16,9 @@ def make_dict(total, city, isp):
     prefixInfo = data['prefixInfo']
     no = 0
 
+    batch_size = 100000
+    buffer = []
+
     with open("telephone_number_dict.csv", "w+", encoding="UTF-8", newline='') as f:
         writer = csv.writer(f)
         writer.writerow(["手机号", "手机号归属地"])
@@ -23,11 +26,15 @@ def make_dict(total, city, isp):
             for n in range(len(suffix)):
                 phoneNum = prefix[i] + suffix[n]
                 phoneInfo = prefixInfo[i]['province'] + prefixInfo[i]['city'] + prefixInfo[i]['isp']
-                print(phoneNum, phoneInfo)
-                writer.writerow([phoneNum, phoneInfo])
+                buffer.append([phoneNum, phoneInfo])  # 将要写入的行加入缓冲区
                 no += 1
-    print("[*]手机号字典（telephone_number_dict.csv）生成成功，共计生成：{}条，请打开字典查看详细内容！".format(no))
 
+                if len(buffer) >= batch_size:
+                    writer.writerows(buffer)
+                    buffer.clear()
+
+        if buffer:
+            writer.writerows(buffer)
 
 if __name__ == '__main__':
     try:
