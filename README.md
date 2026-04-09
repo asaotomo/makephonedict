@@ -133,7 +133,7 @@ python3 makephonedict.py
 生成结果写入 `telephone_number_dict.csv`，表头：
 
 ```csv
-手机号,手机号归属地,命中号段
+序号,手机号,手机号归属地,命中号段
 ```
 
 ---
