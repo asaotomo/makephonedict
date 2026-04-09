@@ -857,7 +857,7 @@ def make_dict(total, city_codes, isp_codes, generation_mode="random"):
 
     with open("telephone_number_dict.csv", "w+", encoding="UTF-8", newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(["手机号", "手机号归属地", "命中号段"])
+        writer.writerow(["序号", "手机号", "手机号归属地", "命中号段"])
         generated_rows = []
         for logical_idx in _iter_indices(total, max_total, generation_mode):
             segment_idx = logical_idx % len(unique_segments)
@@ -873,12 +873,12 @@ def make_dict(total, city_codes, isp_codes, generation_mode="random"):
 
         no = len(generated_rows)
         print_limit = 30
-        for i, (phone_num, phone_info, segment, _isp_name) in enumerate(generated_rows):
-            if i < print_limit:
+        for i, (phone_num, phone_info, segment, _isp_name) in enumerate(generated_rows, start=1):
+            if i <= print_limit:
                 print(phone_num, phone_info)
-            elif i == print_limit:
+            elif i == (print_limit + 1):
                 print(f"...（仅展示前 {print_limit} 条，完整结果见 telephone_number_dict.csv）")
-            writer.writerow([phone_num, phone_info, segment])
+            writer.writerow([i, phone_num, phone_info, segment])
 
     print("[*]手机号字典（telephone_number_dict.csv）生成成功，共计生成：{}条，请打开字典查看详细内容！".format(no))
 
