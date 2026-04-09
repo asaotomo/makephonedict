@@ -5,7 +5,8 @@
 - 生成指定城市、指定运营商的手机号字典
 - 查询手机号归属地（单个/批量）
 
-<img width="828" height="568" alt="image" src="https://github.com/user-attachments/assets/a34327c5-b44d-4141-bb7e-ae312f43cd75" />
+<img width="1522" height="887" alt="image" src="https://github.com/user-attachments/assets/15f05ec8-159f-485f-914e-27a8f416d80c" />
+
 
 如果你是第一次用，建议直接看下面的「5分钟上手」。
 
